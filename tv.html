@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <title>HOSPITAL MANAGEMENT SYSTEM - Live Status Board</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="tv-mode">
+    <div id="particles-js"></div>
+    <script>
+      // TV defaults to dark theme (hospital-style)
+      document.documentElement.setAttribute("data-theme", "dark");
+    </script>
+
+    <div class="tv-container">
+      <div class="tv-header">
+        <div class="live-badge" id="liveBadge">🔴 LIVE</div>
+        <h1>🏥 HOSPITAL MANAGEMENT SYSTEM</h1>
+        <h2 style="color: rgba(255, 255, 255, 0.9); margin-top: 10px">
+          Live Patient Status Board
+        </h2>
+        <div class="tv-clock" id="tvClock"></div>
+      </div>
+
+      <div class="tv-grid">
+        <!-- OT Panel -->
+        <div class="tv-panel">
+          <div class="tv-panel-header ot">🚑 PATIENTS IN OT</div>
+          <table class="tv-table">
+            <thead>
+              <tr>
+                <th>Patient</th>
+                <th>Location</th>
+                <th>Doctor</th>
+                <th>Surgery</th>
+                <th>Condition</th>
+              </tr>
+            </thead>
+            <tbody id="tvOtTable"></tbody>
+          </table>
+        </div>
+
+        <!-- Surgery Panel -->
+        <div class="tv-panel">
+          <div class="tv-panel-header surgery">🔪 UNDER SURGERY</div>
+          <table class="tv-table">
+            <thead>
+              <tr>
+                <th>Patient</th>
+                <th>Location</th>
+                <th>Doctor</th>
+                <th>Surgery</th>
+                <th>Condition</th>
+              </tr>
+            </thead>
+            <tbody id="tvSurgeryTable"></tbody>
+          </table>
+        </div>
+
+        <!-- Ward Panel -->
+        <div class="tv-panel">
+          <div class="tv-panel-header ward">🏥 SHIFTED TO WARD</div>
+          <table class="tv-table">
+            <thead>
+              <tr>
+                <th>Patient</th>
+                <th>Location</th>
+                <th>Doctor</th>
+                <th>Surgery</th>
+                <th>Condition</th>
+              </tr>
+            </thead>
+            <tbody id="tvWardTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="last-updated" id="lastUpdated">Waiting for live data...</div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="particles.js"></script>
+    <script src="tv.js"></script>
+  </body>
+</html>

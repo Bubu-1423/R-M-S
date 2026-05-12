@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HOSPITAL MANAGEMENT SYSTEM - Admin Panel</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="particles-js"></div>
+
+    <div class="live-indicator" id="liveIndicator">
+      📡 Live Status: Waiting for publish
+    </div>
+
+    <div class="admin-container">
+      <div class="header">
+        <div class="header-left">
+          <h1>🏥 HOSPITAL MANAGEMENT SYSTEM - Admin Control Panel</h1>
+          <div class="clock" id="clock"></div>
+        </div>
+
+        <div class="header-right">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            type="button"
+            aria-label="Toggle dark/light mode"
+          >
+            <span class="theme-toggle-icon" id="themeToggleIcon">🌙</span>
+            <span class="theme-toggle-text">Theme</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Publish Button -->
+      <div style="text-align: center">
+        <button class="publish-btn" id="publishLiveBtn">
+          📢 PUBLISH LIVE UPDATE TO TV SCREENS
+        </button>
+        <p style="font-size: 12px; color: #666">
+          ⚠️ Only published data will be visible on TV displays
+        </p>
+      </div>
+
+      <!-- Add Patient Form -->
+      <div class="admin-panel">
+        <h2>➕ Add New Patient</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Patient Name *</label>
+            <input
+              type="text"
+              id="patientName"
+              placeholder="Enter patient name"
+            />
+          </div>
+          <div class="form-group">
+            <label>Location/Ward *</label>
+            <input
+              type="text"
+              id="patientLocation"
+              placeholder="e.g., ICU Room 101"
+            />
+          </div>
+          <div class="form-group">
+            <label>Doctor Name *</label>
+            <input
+              type="text"
+              id="doctorName"
+              placeholder="Enter doctor name"
+            />
+          </div>
+          <div class="form-group">
+            <label>Surgery/Procedure</label>
+            <input type="text" id="surgeryName" placeholder="Surgery name" />
+          </div>
+          <div class="form-group">
+            <label>Status *</label>
+            <select id="patientStatus">
+              <option value="In OT">🚑 In OT</option>
+              <option value="Under Surgery">🔪 Under Surgery</option>
+              <option value="Shifted to Ward">🏥 Shifted to Ward</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Condition Update</label>
+            <textarea
+              id="conditionUpdate"
+              rows="2"
+              placeholder="Patient condition update..."
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label>Priority</label>
+            <select id="priority">
+              <option value="1">🔴 High Priority</option>
+              <option value="2" selected>🟡 Medium Priority</option>
+              <option value="3">🟢 Low Priority</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn" onclick="addPatient()">Add Patient</button>
+      </div>
+
+      <!-- Patient List -->
+      <div class="admin-panel">
+        <h2>📋 Patient Management</h2>
+        <div style="overflow-x: auto">
+          <table style="width: 100%">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Patient</th>
+                <th>Location</th>
+                <th>Doctor</th>
+                <th>Surgery</th>
+                <th>Status</th>
+                <th>Condition</th>
+                <th>Priority</th>
+                <th>Published</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="patientsTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      HOSPITAL MANAGEMENT SYSTEM | Admin Panel v2.0 | Real-time Management
+      System
+    </div>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <h3>Edit Patient</h3>
+        <div id="editForm"></div>
+        <button onclick="closeModal()">Cancel</button>
+      </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="theme.js"></script>
+    <script src="particles.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>
